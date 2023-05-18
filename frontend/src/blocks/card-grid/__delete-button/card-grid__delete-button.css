@@ -1,0 +1,21 @@
+.card-grid__delete-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url(../../../images/Trash_Icon.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;
+  transition: opacity .2s linear;
+}
+
+.card-grid__delete-button:hover {
+  opacity: .6;
+}

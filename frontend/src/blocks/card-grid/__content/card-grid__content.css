@@ -1,0 +1,7 @@
+.card-grid__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+  margin: 0 auto;
+}

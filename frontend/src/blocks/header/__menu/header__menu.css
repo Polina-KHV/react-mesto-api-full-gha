@@ -1,0 +1,22 @@
+.header__menu {
+  display: flex;
+  column-gap: 24px;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #fff;
+}
+
+@media screen and (max-width: 950px) {
+  .header__menu {
+    column-gap: 16px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header__menu {
+    flex-direction: column;
+    row-gap: 4px;
+    align-items: end;
+    min-height: 56px;
+    max-width: none;
+  }
+}

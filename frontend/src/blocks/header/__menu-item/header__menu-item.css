@@ -1,0 +1,21 @@
+.header__menu-item {
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 950px) {
+  .header__menu-item {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header__menu-item {
+    margin-right: 27px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

@@ -1,0 +1,6 @@
+.popup__card-container {
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 25px;
+}

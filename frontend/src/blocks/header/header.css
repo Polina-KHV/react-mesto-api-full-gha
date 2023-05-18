@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  box-sizing: border-box;
+  max-width: 880px;
+  width: 100%;
+  min-height: 74px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+@media screen and (max-width: 950px) {
+  .header {
+    max-width: 581px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header {
+    align-items: normal;
+    min-height: 56px;
+    max-width: none;
+  }
+}

@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  max-width: 880px;
+  width: 100%;
+  margin: 40px auto 66px;
+}
+
+@media screen and (max-width: 950px) {
+  .content {
+    max-width: 581px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .content {
+    max-width: 282px;
+    row-gap: 36px;
+    margin: 42px auto 48px;
+  }
+}

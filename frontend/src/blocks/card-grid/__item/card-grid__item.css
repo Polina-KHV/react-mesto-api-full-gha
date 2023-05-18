@@ -1,0 +1,10 @@
+.card-grid__item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 22px;
+  width: 282px;
+  padding-bottom: 22px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+}
