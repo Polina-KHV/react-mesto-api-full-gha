@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.daechwita.students.nomoredomains.monster';
+export const BASE_URL = 'https://api.daechwita.students.nomoredomains.monster';
 
 function makeRequest(url, method, body, token) {
   const headers = {

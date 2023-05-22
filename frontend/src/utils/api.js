@@ -79,7 +79,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://api.daechwita.students.nomoredomains.monster',
+  baseUrl: 'https://api.daechwita.students.nomoredomains.monster',
   headers: {
     authorization: '75baa56a-370e-4e70-8e83-c19302f5044d',
     'Content-Type': 'application/json'
