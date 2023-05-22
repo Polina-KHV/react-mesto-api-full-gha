@@ -36,12 +36,12 @@ function App() {
   // Проверяем токен при загрузке сайта
   function tokenCheck() {
     setLoading(true);
-    const jwt = localStorage.getItem('jwt');
-    if (jwt){
-      getContent(jwt).then((res) => {
+    const authorised = localStorage.getItem('authorised');
+    if (authorised){
+      getContent().then((res) => {
         if (res){
           setLoggedIn(true);
-          setUserEmail(res.data.email);
+          setUserEmail(res.email);
         }
       })
       .then(() => navigate("/", {replace: true}))
@@ -101,13 +101,11 @@ function App() {
       return;
     }
     authorize(email, password)
-    .then((data) => {
-      if (data.token){
-        localStorage.setItem('jwt', data.token);
+    .then(() => {
+        localStorage.setItem('authorised', 'true');
         setLoggedIn(true);
         setUserEmail(email);
         navigate("/", {replace: true})
-      }
     })
     .catch((err) => {
       console.log(`Ошибка: ${err.status}`);
@@ -118,7 +116,7 @@ function App() {
 
   // Обрабатываем выход из профиля
   function handleSignOut() {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('authorised');
     navigate("/sign-in", {replace: true})
   };
   

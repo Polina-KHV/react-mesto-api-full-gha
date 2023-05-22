@@ -8,7 +8,7 @@ const {
 const getCards = (req, res, next) => {
   Card.find()
     .populate(['owner', 'likes'])
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
@@ -18,7 +18,7 @@ const createCard = (req, res, next) => {
   Card.create({ name, link, owner: req.user._id })
     .then((card) => {
       card.populate(['owner', 'likes'])
-        .then(() => res.status(201).send({ data: card }));
+        .then(() => res.status(201).send(card));
     })
     .catch((e) => {
       if (e.name === 'ValidationError') {
@@ -40,7 +40,7 @@ const removeCard = (req, res, next) => {
       return card.deleteOne()
         .then(() => {
           card.populate(['owner', 'likes'])
-            .then(() => res.send({ data: card }));
+            .then(() => res.send(card));
         });
     })
     .catch((e) => {
@@ -63,7 +63,7 @@ const likeCard = (req, res, next) => {
     .orFail()
     .then((card) => {
       card.populate(['owner', 'likes'])
-        .then(() => res.send({ data: card }));
+        .then(() => res.send(card));
     })
     .catch((e) => {
       if (e.name === 'DocumentNotFoundError') {
@@ -85,7 +85,7 @@ const dislikeCard = (req, res, next) => {
     .orFail()
     .then((card) => {
       card.populate(['owner', 'likes'])
-        .then(() => res.send({ data: card }));
+        .then(() => res.send(card));
     })
     .catch((e) => {
       if (e.name === 'DocumentNotFoundError') {

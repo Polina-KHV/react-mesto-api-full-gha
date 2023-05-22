@@ -14,6 +14,7 @@ class Api {
 
   getUserInfo() {
     return this._request(`${this._baseUrl}/users/me`, {
+      credentials: 'include',
       headers: this._headers
     })
   }
@@ -21,6 +22,7 @@ class Api {
   setUserInfo(data) {
     return this._request(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -32,6 +34,7 @@ class Api {
   setUserAvatar(data) {
     return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar
@@ -41,6 +44,7 @@ class Api {
 
   getInitialCards() {
     return this._request(`${this._baseUrl}/cards`, {
+      credentials: 'include',
       headers: this._headers
     })
   }
@@ -48,6 +52,7 @@ class Api {
   addNewCard(data) {
     return this._request(`${this._baseUrl}/cards`, {
       method: 'POST',
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -59,6 +64,7 @@ class Api {
   deleteCard(cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: this._headers
     })
   }
@@ -66,13 +72,14 @@ class Api {
   changeLikeCardStatus(cardId, isLiked) {
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: !isLiked ? 'DELETE' : 'PUT',
+      credentials: 'include',
       headers: this._headers
     })
   }
 }
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-59',
+  baseUrl: 'http://api.daechwita.students.nomoredomains.monster',
   headers: {
     authorization: '75baa56a-370e-4e70-8e83-c19302f5044d',
     'Content-Type': 'application/json'

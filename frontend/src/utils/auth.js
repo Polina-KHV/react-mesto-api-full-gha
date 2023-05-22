@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'http://api.daechwita.students.nomoredomains.monster';
 
 function makeRequest(url, method, body, token) {
   const headers = {
@@ -6,13 +6,10 @@ function makeRequest(url, method, body, token) {
     "Content-Type": "application/json"
   };
 
-  if (token){
-    headers['Authorization'] = `Bearer ${token}`
-  };
-
   const config = {
     method,
-    headers
+    headers,
+    credentials: 'include',
   };
 
   if (body) {
@@ -21,8 +18,7 @@ function makeRequest(url, method, body, token) {
 
   return fetch(`${BASE_URL + url}`, config)
   .then(((res) => {
-    if(res.ok) {return res.json()}
-    return Promise.reject(res)
+    return res.ok ? res.json() : Promise.reject(res)
   }))
 };
 
@@ -34,6 +30,6 @@ export function authorize(email, password) {
   return makeRequest('/signin', 'POST', {email, password})
 };
 
-export function getContent(token) {
-  return makeRequest('/users/me', 'GET', undefined, token)
+export function getContent() {
+  return makeRequest('/users/me', 'GET')
 };

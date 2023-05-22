@@ -16,22 +16,24 @@ const login = (req, res, next) => {
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
+        sameSite: 'none',
+        secure: true,
       })
-        .end();
+        .send(user);
     })
     .catch(next);
 };
 
 const getUsers = (req, res, next) => {
   User.find()
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
 const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail()
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((e) => {
       if (e.name === 'DocumentNotFoundError') {
         next(new NotFoundError('User Not Found'));
@@ -44,7 +46,7 @@ const getCurrentUser = (req, res, next) => {
 const getUser = (req, res, next) => {
   User.findById(req.params.userId)
     .orFail()
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((e) => {
       if (e.name === 'DocumentNotFoundError') {
         next(new NotFoundError('User Not Found'));
@@ -65,7 +67,7 @@ const createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then((user) => res.status(201).send({ data: user }))
+    .then((user) => res.status(201).send(user))
     .catch((e) => {
       if (e.code === 11000) {
         next(new ConflictError('User With This Email Already Exists'));
@@ -86,7 +88,7 @@ const updateUserInfo = (req, res, next) => {
     runValidators: true,
   })
     .orFail()
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((e) => {
       if (e.name === 'ValidationError') {
         const message = Object.values(e.errors).map((error) => error.message).join('; ');
@@ -107,7 +109,7 @@ const updateUserAvatar = (req, res, next) => {
     runValidators: true,
   })
     .orFail()
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((e) => {
       if (e.name === 'ValidationError') {
         const message = Object.values(e.errors).map((error) => error.message).join('; ');

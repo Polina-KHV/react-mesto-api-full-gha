@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { celebrate, isCelebrateError } = require('celebrate');
 const { global, db } = require('./config/config');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { userFullInfoSchema } = require('./middlewares/user-validation');
 const auth = require('./middlewares/auth');
 const { login, createUser } = require('./controllers/users');
@@ -12,12 +14,36 @@ const { NotFoundError, BadRequestError } = require('./config/errors');
 
 const app = express();
 
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://localhost:3000',
+    'http://localhost:3001',
+    'https://localhost:3001',
+    'http://158.160.67.152',
+    'https://158.160.67.152',
+    'http://daechwita.students.nomoredomains.monster',
+    'https://daechwita.students.nomoredomains.monster',
+
+  ],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  preflightContinue: false,
+  credentials: true,
+}));
+
 mongoose.connect(db.url);
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.post('/signin', celebrate({ body: userFullInfoSchema }), login);
+app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.post('/signin', celebrate({ body: userFullInfoSchema }), login);
 app.post('/signup', celebrate({ body: userFullInfoSchema }), createUser);
 app.use('/users', auth, userRouter);
@@ -26,6 +52,8 @@ app.use('/cards', auth, cardRouter);
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Page Not Found'));
 });
+
+app.use(errorLogger);
 
 app.use((err, req, res, next) => {
   if (isCelebrateError(err)) {

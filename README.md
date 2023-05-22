@@ -1,15 +1,25 @@
 [![Tests](https://github.com/yandex-praktikum/react-mesto-api-full-gha/actions/workflows/tests.yml/badge.svg)](https://github.com/yandex-praktikum/react-mesto-api-full-gha/actions/workflows/tests.yml)
-# react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
-  
-Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+# **Mesto-Full-Project**
+## Student project for [Yandex Practicum](https://practicum.yandex.ru/)
 
-## Ссылки на проект
+This project let you create your own collection of the most beautiful places in Russia. Create your mood board, adding pictures of the favorite places.
 
-IP-адрес x.x.x.x
+The site provides the following options:  
+- registration and authorization  
+- edition of profile information and avatar  
+- creating and removing place cards  
+- ability to like cards
 
-Frontend https://...
+The frontend part made with Create React App.  
+The backend part made with Express using MongoDB.
 
-Backend https://...
+Repository [link](https://github.com/Polina-KHV/react-mesto-api-full-gha).
+
+## Project links
+
+IP 158.160.67.152  
+
+Frontend https://daechwita.students.nomoredomains.monster
+
+Backend https://api.daechwita.students.nomoredomains.monster
